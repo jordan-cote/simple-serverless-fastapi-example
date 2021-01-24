@@ -32,22 +32,15 @@ jobs:
         run: |
           virtualenv -p python3.8 env
           echo "source ./env/bin/activate" | bash
-          pip install -r requirements.txt --target ./packages
-
-      - name: Zipping dependencies
-        run: | 
-          echo "$(pwd)"
-          cd ./packages
-          echo "SITE PACKAGES"
-          ls
-          chmod -R 777 .
-          zip -r9 ../function.zip .
+          pip install -r requirements.txt
+          cd env/lib/python3.8/site-packages
+          zip -r9 ../../../../function.zip .
 
       - name: Adding API App to Zipfile
         run: |
           echo "$(pwd)"
-          chmod -R 777 app
-          zip -g ./function.zip -r app
+          chmod -R 777 .
+          zip -g ../function.zip -r app
       
       - uses: actions/upload-artifact@v2
         with:
