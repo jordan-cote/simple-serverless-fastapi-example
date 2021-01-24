@@ -34,6 +34,7 @@ jobs:
           echo "source ./env/bin/activate" | bash
           pip install -r requirements.txt
           cd env/lib/python3.8/site-packages
+          echo "$(pwd)"
           zip -r9 ../../../../function.zip .
 
       - name: Adding API App to Zipfile
