@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "$(pwd)"
           chmod -R 777 .
-          zip -g ./function.zip -r app
+          zip -g ./function.zip -r src
       
       - uses: actions/upload-artifact@v2
         with:
