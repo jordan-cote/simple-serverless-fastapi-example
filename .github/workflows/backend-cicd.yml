@@ -23,6 +23,10 @@ jobs:
         run: |
           PYTHONPATH=${PYTHONPATH}:${PWD}
 
+      - name: Installing Virtuenv
+        run: |
+          sudo pip install virtualenv
+
       - name: Install dependencies
         run: |
           virtualenv -p python3.8 env
@@ -30,6 +34,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
           pip uninstall psycopg2
+          y
           pip uninstall psycopg2-binary
           pip install psycopg2-binary
           cd env/lib/python3.8/site-packages
