@@ -24,10 +24,15 @@ jobs:
           PYTHONPATH=${PYTHONPATH}:${PWD}
 
       - name: Upgrading pip
-        run: python -m pip install --upgrade pip
+        run: |
+          sudo pip install virtualenv
+          python -m pip install --upgrade pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt --target ./packages
+        run: |
+          virtualenv -p python3.8 env
+          echo "source ./env/bin/activate" | bash
+          pip install -r requirements.txt --target ./packages
 
       - name: Zipping dependencies
         run: | 
