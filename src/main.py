@@ -1,6 +1,7 @@
 from typing import Optional
 from fastapi import FastAPI
 from .database import engine
+from mangum import Mangum
 
 from .api.api import router as api_router
 
@@ -29,3 +30,4 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 
 app.include_router(api_router, prefix="/api")
+handler = Mangum(app)
